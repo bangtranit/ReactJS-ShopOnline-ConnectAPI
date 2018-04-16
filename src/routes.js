@@ -14,3 +14,4 @@ const routes = [
         main: () => <NotFoundPage />
     }
 ]
+export default routes;

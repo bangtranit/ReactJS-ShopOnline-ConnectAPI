@@ -4,10 +4,7 @@ class HomePage extends Component {
     render() {
         return (
             <div className='container'>
-                <div className="alert alert-warning">
-                    <button type="button" className="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>Khong tim thay trang</strong>
-                </div>
+                <h1>Trang chu</h1>
             </div>
         );
     }
