@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as Config from './../../constants/Config'
 import callAPI from './../../utils/ApiCaller'
+import { Link } from 'react-router-dom'
 
 class ProductActionPage extends Component {
     constructor(props) {
@@ -80,6 +81,10 @@ class ProductActionPage extends Component {
                             Còn hàng
                         </label>
                     </div>
+                    {/* <Link to='/product-list' className='btn btn-danger'> Trở lại </Link> */}
+                    <Link to='/product-list' className='btn btn-danger mr-10' >
+                        Trở lại
+                    </Link>
                     <button type="submit" className="btn btn-primary">Lưu lại</button>
                 </form>
             </div>

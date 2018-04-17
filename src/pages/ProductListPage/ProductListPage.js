@@ -4,6 +4,7 @@ import ProductList from './../../components/ProductList/ProductList'
 import { connect } from 'react-redux'
 import callAPI from './../../utils/ApiCaller'
 import { Link } from 'react-router-dom'
+import './../../App.css'
 
 
 class ProductListPage extends Component {
