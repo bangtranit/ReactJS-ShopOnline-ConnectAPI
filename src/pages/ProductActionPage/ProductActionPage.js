@@ -13,45 +13,75 @@ class ProductActionPage extends Component {
             chkbStatus: '',
         }
     }
-    onChange = e =>{
-        var {target} = e;
-        var {name} = target;
+
+    componentDidMount() {
+        var { match } = this.props;
+        if (match) {
+            var { id } = match.params;
+            callAPI(`product/${id}`, 'GET', null).then(res => {
+                console.log(res);
+                var { data } = res;
+                this.setState({
+                    id: data.id,
+                    txtName: data.name,
+                    txtPrice: data.price,
+                    chkbStatus: data.status
+                })
+            })
+        }
+    }
+
+    onChange = e => {
+        var { target } = e;
+        var { name } = target;
         var value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({
-            [name]:value
+            [name]: value
         })
     }
 
-    onSave = e =>{
+    onSave = e => {
         e.preventDefault();
         console.log(this.state);
-        var {txtName,txtPrice,chkbStatus} = this.state;
-        var {history} = this.props;
-        callAPI('product','POST',{
-            name:txtName,
-            price:txtPrice,
-            status:chkbStatus
-        }).then(res =>{
-            console.log(res);
-            var {status}=res;
-            if(status === Config.CODE_CREATE_OK){
+        var {id, txtName, txtPrice, chkbStatus } = this.state;
+        var { history } = this.props;
+        if(id){
+            console.log('updating....')
+            callAPI(`product/${id}`,'PUT',{
+                name: txtName,
+                price: txtPrice,
+                status: chkbStatus
+            }).then(res=>{
                 history.goBack();
-            }else{
-                alert('Create product has failed');
-            }
-        })
+            })
+        }else{
+            callAPI('product', 'POST', {
+                name: txtName,
+                price: txtPrice,
+                status: chkbStatus
+            }).then(res => {
+                console.log(res);
+                var { status } = res;
+                if (status === Config.CODE_CREATE_OK) {
+                    history.goBack();
+                } else {
+                    alert('Create product has failed');
+                }
+            })
+        }
+        
     }
     render() {
-        var { txtName, txtPrice, chkbStatus} = this.state;
+        var { txtName, txtPrice, chkbStatus } = this.state;
         return (
             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <form onSubmit={this.onSave}>
                     <div className="form-group">
                         <label>Tên sản phẩm:</label>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            id="" 
+                        <input
+                            type="text"
+                            className="form-control"
+                            id=""
                             name="txtName"
                             value={txtName}
                             onChange={this.onChange} />
@@ -59,10 +89,10 @@ class ProductActionPage extends Component {
 
                     <div className="form-group">
                         <label>Giá:</label>
-                        <input 
-                            type="number" 
-                            className="form-control" 
-                            id="" 
+                        <input
+                            type="number"
+                            className="form-control"
+                            id=""
                             name="txtPrice"
                             value={txtPrice}
                             onChange={this.onChange} />
@@ -73,11 +103,12 @@ class ProductActionPage extends Component {
                     </div>
                     <div className="checkbox">
                         <label>
-                            <input 
-                                type="checkbox" 
+                            <input
+                                type="checkbox"
                                 name="chkbStatus"
                                 value={chkbStatus}
-                                onChange={this.onChange} />
+                                onChange={this.onChange} 
+                                checked={chkbStatus}/>
                             Còn hàng
                         </label>
                     </div>

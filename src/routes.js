@@ -23,7 +23,7 @@ const routes = [
     {
         path: '/product/:id/edit',
         exact: false,
-        main: ({match}) => <ProductActionPage match={match}/>
+        main: ({match, history}) => <ProductActionPage match={match} history={history}/>//get param from url lấy tham số trên url
     },
     {
         path: '',
