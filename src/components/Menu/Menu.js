@@ -28,7 +28,7 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
                 </li>
             }}
         />
-    )Pro
+    )
 };
 
 class Menu extends Component {
