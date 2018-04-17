@@ -1,6 +1,6 @@
 import React from 'react'
 import HomePage from './pages/HomePage/HomePage'
-import ProductListPage from './pages/ProductListPage/ProductListPage'
+import ProductListPage from './pages/ProductListPage/ProductListPage'
 import ProductActionPage from './pages/ProductActionPage/ProductActionPage'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 
