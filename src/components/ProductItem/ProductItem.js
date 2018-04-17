@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class ProductItem extends Component {
     render() {
         var { product, index } = this.props;
-        var statusName = product.status === true? 'con hang' : 'het hang';
-        var statusClass = product.state === true? 'warning' : 'default';
+        var statusName = product.status === true ? 'con hang' : 'het hang';
+        var statusClass = product.status === true ? 'success' : 'default';
         return (
             <tr>
                 <td>{index}</td>
