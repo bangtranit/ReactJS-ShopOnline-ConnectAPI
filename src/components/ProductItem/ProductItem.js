@@ -16,10 +16,19 @@ class ProductItem extends Component {
                 </td>
                 <td>
                     <button type="button" className="btn btn-success ml-10">Sửa</button>
-                    <button type="button" className="btn btn-danger ml-10">Xoá</button>
+                    <button
+                        type="button"
+                        className="btn btn-danger ml-10"
+                        onClick={() => this.onClickToDelete(product.id)}
+                    >Xoá</button>
                 </td>
             </tr>
         );
+    }
+    onClickToDelete = (id) =>{
+        if(confirm('Ban co muon xoa san pham nay khong')){//eslint-disable-line
+            this.props.onDelete(id);
+        }
     }
 }
 
