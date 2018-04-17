@@ -23,26 +23,26 @@ class ProductListPage extends Component {
         });
     }
 
-    onDelete = (id) =>{
-        var {products} = this.state;
-        callAPI(`product/${id}`,'DELETE',null).then(res=>{
-            if(res.status === 200){
+    onDelete = (id) => {
+        var { products } = this.state;
+        callAPI(`product/${id}`, 'DELETE', null).then(res => {
+            if (res.status === 200) {
                 var index = this.findIndex(products, id);
-                if(index !== -1){
-                    products.splice(index,1);
+                if (index !== -1) {
+                    products.splice(index, 1);
                     this.setState({
-                        products:products
+                        products: products
                     });
                 }
             }
         });
     }
 
-    findIndex = (products , id) =>{
+    findIndex = (products, id) => {
         var index = -1;
-        if(products.length>0){
-            for(var i = 0; i < products.length; i++){
-                if(products[i].id === id){
+        if (products.length > 0) {
+            for (var i = 0; i < products.length; i++) {
+                if (products[i].id === id) {
                     index = i;
                     break;
                 }
